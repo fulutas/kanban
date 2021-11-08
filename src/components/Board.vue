@@ -1,0 +1,114 @@
+<template>
+       <div class="board">
+        <div class="head">
+          <div class="title"> {{ board.title.length < 30 ? board.title :  board.title.substring(0,20) + '...' }}
+            <span class="tooltiptext" v-if="board.title.length > 30">{{ board.title }}</span>
+          </div>
+          <span class="head-btns">
+            <i class="fas fa-trash"></i>
+          </span>
+        </div>
+        <div>
+              <p class="msg" v-if="!board.items.length">No items yet.</p>
+              <div class="item-card" v-else>
+                <Item v-for="(item,index) in board.items" :key="index" :item="item" />
+                <button class="btn add-card"><i class="fas fa-plus"></i> Add another card</button>
+              </div>
+        </div>
+      </div>
+</template>
+
+<script>
+
+import Item from "@/components/Item.vue"
+
+export default {
+    name : "Board",
+    components: {
+        Item
+    },
+    props : {
+        board : {
+            required : true,
+            type : Object,
+            default : "-"
+        },
+    }
+}
+</script>
+
+<style scoped>
+.board {
+  padding: 1em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid;
+  border-radius: 4px;
+  height: fit-content;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  cursor: auto;
+  background-color: #f2f2f3;
+  /* Pintereest tarzı için (aşağıdakileri uygula) */ 
+  /* page-break-inside: avoid;
+  break-inside: avoid;
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  height: fit-content; */
+
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-bottom: 2em;
+}
+
+.board .head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5em;
+}
+
+.head .title{
+  position: relative;
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.fa-trash{
+  cursor: pointer;
+  margin-left: .74em;
+  color: rgb(108 108 108);
+}
+
+.add-card{
+    text-transform: none;
+    background-color: transparent;
+    color: #080808;
+}
+
+.tooltiptext{
+  visibility: hidden;
+  width: 270px;
+  margin-left: 15px;
+  background-color: #333030;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 6px;
+  /* Position the tooltip */
+  position: absolute;
+  left: -1em;
+  top: 1.1em;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  overflow: scroll;
+}
+
+.title:hover .tooltiptext{
+   visibility: visible;
+   opacity: 1;
+   transition: 1s;
+}
+
+</style>

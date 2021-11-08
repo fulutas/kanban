@@ -1,0 +1,143 @@
+/*  Main Styling */ 
+
+:root{
+    --primary-Clr : rgb(60, 185, 60);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.container{
+    padding: 0 10vw ;
+}
+
+.main{
+    margin : 1.5em 0;
+}
+
+@media screen and (max-width : 1000px) {
+    .container{
+        padding: 0 6vw;
+    }
+}
+
+@media screen and (max-width : 650px) {
+    .container{
+        padding: 0 3vw;
+    }
+}
+
+.btn{
+    border:none;
+    outline: none;
+    padding: .5em .7em;
+    border-radius: 5px;
+    background-color: var(--primary-Clr);
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.btn--del{
+    background: rgb(108 108 108);
+    font-size: 13px;
+}
+
+.btn--close{
+    background: rgb(207, 49, 49);
+    color: #FFF;
+    /* padding: .75em 1em; */
+}
+
+.btn--add{
+    background: var(--primary-Clr );
+    color: #FFF;
+    /* padding: .75em 1em; */
+}
+
+.msg{
+    color: #080808;
+    text-align: center;
+}
+
+.text-right{
+    text-align: right
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(0.2px); */
+    z-index: 99999;
+}
+
+.modal .content{
+    padding: 1.5em;
+    background-color: #FFF;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal .content .title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.form {
+    margin: 1em 0;
+}
+
+.form label, .form input{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input{
+    padding: .5em;
+    border-radius: 3px;
+    margin-bottom: .75em;
+    outline: none;
+    box-shadow: none;  
+    transition: 180ms all ease-in-out;
+    border-width: 1.5px;
+}
+
+input:focus{
+    border-color: var(--primary-Clr );;
+}
+
+input[type="color"]{
+    padding: .1em .4em;
+}
+
+label {
+    margin-bottom: .3em;
+}
+
+.board-active{
+    transform: scale(1.1);
+    transition: all 1s ease-in-out;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+
