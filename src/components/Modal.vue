@@ -36,10 +36,6 @@ export default {
       required : false,
       type : String
     },
-    priority : {
-      required : false,
-      type : Array
-    }
   },
   data() {
     return {
