@@ -3,10 +3,10 @@
     <div class="content">
       <p class="title">{{ title }}</p>
       <div class="form">
-        <label for="board-title">{{ labelA }}</label>
-        <input type="text" id="board-title" v-model="inputA" />
-        <label for="board-color">{{ labelB }}</label>
-        <input :type="inputBtype" id="board-color" v-model="inputB" />
+        <label for="inputA">{{ labelA }}</label>
+        <input type="text" id="inputA" v-model="inputA" />
+        <label for="inputB">{{ labelB }}</label>
+        <input :type="inputBtype" id="inputB" v-model="inputB" @keyup.enter="submit" />
       </div>
       <p class="text-right">
         <button @click="handleClose" class="btn btn--close">Close</button>
@@ -19,7 +19,28 @@
 <script>
 export default {
   name: "Modal",
-  props: ["title", "labelA", "labelB", "inputBtype"],
+  props : {
+    title : {
+      required : true,
+      type : String
+    },
+    labelA : {
+      required : true,
+      type : String,
+    },
+    labelB : {
+      required : false,
+      type : String
+    },
+    inputBtype : {
+      required : false,
+      type : String
+    },
+    priority : {
+      required : false,
+      type : Array
+    }
+  },
   data() {
     return {
       inputA: "",
@@ -32,7 +53,10 @@ export default {
     },
     submit() {
       if (!this.inputA) {
-        alert("Board title required.");
+        alert(`${this.labelA} required.`);
+        return;
+      } else if (this.title === "Add another card" && !this.inputB){
+        alert(`${this.labelB} required.`);
         return;
       }
 

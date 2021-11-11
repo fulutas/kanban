@@ -15,6 +15,10 @@ html{
     scroll-behavior: smooth;
 }
 
+select, option{
+    text-transform: uppercase;
+}
+
 .container{
     padding: 0 10vw ;
 }
@@ -137,6 +141,13 @@ label {
     transform: scale(1.1);
     transition: all 1s ease-in-out;
 }
+
+.add-card{
+    text-transform: none;
+    background-color: transparent;
+    color: #080808;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 

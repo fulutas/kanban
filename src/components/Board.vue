@@ -12,7 +12,7 @@
               <p class="msg" v-if="!board.items.length">No items yet.</p>
               <div class="item-card" v-else>
                 <Item v-for="(item,index) in board.items" :key="index" :item="item" />
-                <button class="btn add-card"><i class="fas fa-plus"></i> Add another card</button>
+                <AddItem :boardId="id" />
               </div>
         </div>
       </div>
@@ -20,12 +20,14 @@
 
 <script>
 
-import Item from "@/components/Item.vue"
+import Item from "@/components/Item"
+import AddItem from "@/components/AddItem"
 
 export default {
     name : "Board",
     components: {
-        Item
+        Item,
+        AddItem
     },
     props : {
         board : {
@@ -33,6 +35,10 @@ export default {
             type : Object,
             default : "-"
         },
+        id : {
+          required : true,
+          type : Number
+        }
     }
 }
 </script>
@@ -78,12 +84,6 @@ export default {
   cursor: pointer;
   margin-left: .74em;
   color: rgb(108 108 108);
-}
-
-.add-card{
-    text-transform: none;
-    background-color: transparent;
-    color: #080808;
 }
 
 .tooltiptext{

@@ -3,7 +3,7 @@
     <h2 class="main-title">Your Board</h2>
     <h2 class="msg" v-if="!boards.length">you don't have any boards.</h2>
     <div class="boards-container" ref="boards" @mousedown="mouseDown" @mouseleave="mouseLeave" @mouseup="mouseUp" @mousemove="mouseMove" v-else>
-        <Board v-for="(board,index) in boards" :key="index" :board="board" :style="{ borderColor : board.color }"/>
+        <Board v-for="(board,index) in boards" :key="index" :id="index" :board="board" :style="{ borderColor : board.color }"/>
     </div>
   </div>
 </template>
@@ -27,6 +27,14 @@ export default {
         items : []
       })
     })
+
+    EventBus.$on("addItem", data => {
+      this.boards[data.boardId].items.push({
+        title : data.inputA,
+        priority : data.inputB || "low"
+      })
+    })
+
   },
   data() {
     return {
@@ -98,25 +106,7 @@ export default {
               priority : "low",
             },
           ]
-        },
-        {
-          title: "Project 1",
-          color  : "violet",
-          items : [
-            { 
-              title : "Item3",
-              priority : "low",
-            },
-            { 
-              title : "Item4",
-              priority : "medium",
-            },
-            { 
-              title : "Item5",
-              priority : "low",
-            },
-          ]
-        },       
+        },      
       ],
       isDown : false,
       startX : null, // başlangıç noktası
