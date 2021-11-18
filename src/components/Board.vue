@@ -5,7 +5,7 @@
             <span class="tooltiptext" v-if="board.title.length > 30">{{ board.title }}</span>
           </div>
           <span class="head-btns">
-            <i class="fas fa-trash"></i>
+            <i class="fas fa-trash" @click="handleBoardDelete"></i>
           </span>
         </div>
         <div>
@@ -22,6 +22,7 @@
 
 import Item from "@/components/Item"
 import AddItem from "@/components/AddItem"
+import EventBus from "@/utils/eventBus"
 
 export default {
     name : "Board",
@@ -39,6 +40,11 @@ export default {
           required : true,
           type : Number
         }
+    },
+    methods : {
+      handleBoardDelete(){
+        EventBus.$emit("deleteBoard", this.id)
+      }
     }
 }
 </script>

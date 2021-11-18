@@ -35,6 +35,10 @@ export default {
       })
     })
 
+    EventBus.$on("deleteBoard", boardId => {
+      this.boards.splice(boardId, 1)
+    })
+
   },
   data() {
     return {
