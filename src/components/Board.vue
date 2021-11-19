@@ -11,14 +11,20 @@
         <div>
               <p class="msg" v-if="!board.items.length">No items yet.</p>
               <div class="item-card" v-else>
-                <Item v-for="(item,index) in board.items" :key="index" :item="item" />
-                <AddItem :boardId="id" />
+                <draggable v-model="board.items" group="items" handle=".handle">
+                  <transition-group name="list">
+                    <Item v-for="(item,index) in board.items" :key="item.title" :item="item" :boardId="id" :itemId="index" />
+                  </transition-group>
+                </draggable>
               </div>
+             <AddItem :boardId="id" />
         </div>
       </div>
 </template>
 
 <script>
+
+import draggable from "vuedraggable"
 
 import Item from "@/components/Item"
 import AddItem from "@/components/AddItem"
@@ -28,7 +34,8 @@ export default {
     name : "Board",
     components: {
         Item,
-        AddItem
+        AddItem,
+        draggable
     },
     props : {
         board : {
@@ -116,5 +123,6 @@ export default {
    opacity: 1;
    transition: 1s;
 }
+
 
 </style>

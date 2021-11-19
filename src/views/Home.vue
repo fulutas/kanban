@@ -3,7 +3,7 @@
     <h2 class="main-title">Your Board</h2>
     <h2 class="msg" v-if="!boards.length">you don't have any boards.</h2>
     <div class="boards-container" ref="boards" @mousedown="mouseDown" @mouseleave="mouseLeave" @mouseup="mouseUp" @mousemove="mouseMove" v-else>
-        <Board v-for="(board,index) in boards" :key="index" :id="index" :board="board" :style="{ borderColor : board.color }"/>
+          <Board v-for="(board,index) in boards" :key="index" :id="index" :board="board" :style="{ borderColor : board.color }"/>
     </div>
   </div>
 </template>
@@ -20,6 +20,9 @@ export default {
     Board
   },
   mounted(){
+
+    console.log(this.boards[3].items)
+
     EventBus.$on("addBoard", data => {
       this.boards.push({
         title : data.inputA,
@@ -37,6 +40,10 @@ export default {
 
     EventBus.$on("deleteBoard", boardId => {
       this.boards.splice(boardId, 1)
+    })
+
+    EventBus.$on("deleteItem", data => {
+      this.boards[data.boardId].items.splice(data.itemId, 1)
     })
 
   },
